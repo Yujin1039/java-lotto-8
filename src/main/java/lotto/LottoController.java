@@ -9,11 +9,13 @@ public class LottoController {
         System.out.println("구입금액을 입력해 주세요.");
         int purchaseAmount = Validator.checkDivisibility(Console.readLine(), 1000);
 
+        // 출력1: 발행 로또 수량
+        System.out.printf("%d개를 구매했습니다.\n",purchaseAmount/1000);
+
         // 입력2: 당첨 번호
+        System.out.println("구입금액을 입력해 주세요.");
 
         // 입력3: 보너스 번호
-
-        // 출력1: 발행 로또 수량
 
         // 출력2: 발행 로또 번호
 
