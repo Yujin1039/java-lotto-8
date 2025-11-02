@@ -1,5 +1,8 @@
 package validator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Validator {
 
     // 1000원 단위로 나눠떨어지는지 확인
@@ -23,6 +26,26 @@ public class Validator {
             return Integer.parseInt(number);
         }catch(Exception e){
             throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+        }
+    }
+
+    // 구분자 기준 숫자 리스트 변환
+    public static List<Integer> convertToList(String LottoNumbers,String separtor){
+
+        try{
+            // 구분자 기준 분리
+            String[] tempNums = LottoNumbers.split(separtor);
+
+            // String[] → List로 변환
+            List<Integer> numberList = new ArrayList<>();
+            for(String number:tempNums){
+                numberList.add(Integer.parseInt(number));
+            }
+            return numberList;
+
+        }catch(Exception e){
+            throw new IllegalArgumentException("[ERROR] 숫자, 구분자("
+                    +separtor+") 이외의 값은 입력할 수 없습니다.");
         }
     }
 }

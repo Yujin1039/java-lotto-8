@@ -3,6 +3,8 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import validator.Validator;
 
+import java.util.List;
+
 public class LottoController {
     public static void main(String[] args){
         // 입력1: 로또 구입 금액
@@ -13,7 +15,8 @@ public class LottoController {
         System.out.printf("%d개를 구매했습니다.\n",purchaseAmount/1000);
 
         // 입력2: 당첨 번호
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println("당첨 번호를 입력해 주세요.");
+        List<Integer> winningNumbers = Validator.convertToList(Console.readLine(),",");
 
         // 입력3: 보너스 번호
 
