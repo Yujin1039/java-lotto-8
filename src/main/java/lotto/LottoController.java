@@ -20,6 +20,8 @@ public class LottoController {
         List<Integer> winningNumbers = Validator.convertToList(Console.readLine(),",");
 
         // 입력3: 보너스 번호
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = Validator.convertToNumber(Console.readLine());
 
         // 출력2: 발행 로또 번호
 
