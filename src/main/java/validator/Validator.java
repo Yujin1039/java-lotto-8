@@ -16,26 +16,28 @@ public class Validator {
         return amount;
     }
 
-    // 1~45 사이의 숫자인지 확인
+    // 숫자인지 확인
     public static int convertToNumber(String number){
         if(number.isEmpty() || number.trim().isEmpty()){
             throw new IllegalArgumentException("[ERROR] 빈 값을 입력할 수 없습니다.");
         }
 
-        int num;
         try{
-            num = Integer.parseInt(number);
+            return Integer.parseInt(number);
         }catch(Exception e){
             throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
         }
+    }
 
+    // 1~45 사이의 숫자인지 확인
+    public static int convertToNumberInRange(int number){
         int MIN_VALUE = 1;
         int MAX_VALUE = 45;
-        if(num < MIN_VALUE || num > MAX_VALUE){
+        if(number < MIN_VALUE || number > MAX_VALUE){
             throw new IllegalArgumentException("[ERROR] "+MIN_VALUE+"~"+MAX_VALUE+"사이의 숫자만 입력 가능합니다.");
         }
 
-        return num;
+        return number;
     }
 
     // 구분자 기준 숫자 리스트 변환
@@ -47,7 +49,7 @@ public class Validator {
         // String[] → List로 변환
         List<Integer> numberList = new ArrayList<>();
         for(String number:tempNums){
-            int num = convertToNumber(number);
+            int num = convertToNumberInRange(convertToNumber(number));
             numberList.add(num);
         }
         return numberList;
