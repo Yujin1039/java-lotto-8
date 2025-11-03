@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoService {
@@ -21,6 +22,7 @@ public class LottoService {
     public void issueLotto(){
         for(int i=0; i<purchaseAmount; i++){
             Lotto issueNumber = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            issueNumber.sortNumbers();
             issueNumbers.add(issueNumber);
         }
     }
@@ -28,5 +30,10 @@ public class LottoService {
     // 발행된 로또 반환
     public Lotto getIssueNumbers(int index){
         return issueNumbers.get(index);
+    }
+
+    // 개별 로또 당첨 여부 확인
+    public void confirmLottoResult(){
+
     }
 }

@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -18,5 +19,10 @@ public class Lotto {
 
     public List<Integer> getLotto(){
         return numbers;
+    }
+
+    // 로또번호 정렬
+    public void sortNumbers(){
+        Collections.sort(numbers);
     }
 }
