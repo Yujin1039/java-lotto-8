@@ -3,19 +3,23 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoService {
     private int purchaseAmount;
-    private Lotto winningNumber;
-    private List<Lotto> issueNumbers;
+    private Lotto winningLotto;
+    private List<Lotto> issueLottos;
+    private int bonusNumber;
+    private Map<LottoResult, Integer> result;
 
     // 로또 번호 객체 생성
-    public LottoService(int pca, List<Integer> list){
+    public LottoService(int pca, List<Integer> list, int bonusNumber){
         this.purchaseAmount = pca;
-        this.winningNumber = new Lotto(list);
-        this.issueNumbers = new ArrayList<>();
+        this.winningLotto = new Lotto(list);
+        this.issueLottos = new ArrayList<>();
+        this.bonusNumber = bonusNumber;
     }
 
     // 로또 발행
@@ -23,17 +27,42 @@ public class LottoService {
         for(int i=0; i<purchaseAmount; i++){
             Lotto issueNumber = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             issueNumber.sortNumbers();
-            issueNumbers.add(issueNumber);
+            issueLottos.add(issueNumber);
         }
     }
 
     // 발행된 로또 반환
     public Lotto getIssueNumbers(int index){
-        return issueNumbers.get(index);
+        return issueLottos.get(index);
     }
 
-    // 개별 로또 당첨 여부 확인
-    public void confirmLottoResult(){
+    // 당첨 번호 개수 확인
+    public int confirmWinningNumbers(Lotto lotto){
+        int winning = 0;
+        for(Integer number:lotto.getLotto()){
+            if(winningLotto.getLotto().contains(number)){
+                winning++;
+            }
+        }
+        return winning;
+    }
 
+    // 보너스 번호 당첨 여부 확인
+    public boolean confirmWinningBonus(Lotto lotto){
+        return winningLotto.getLotto().contains(bonusNumber);
+    }
+
+    // 당첨 결과 저장
+    public Map<LottoResult,Integer> saveLottoResult(){
+        result = new HashMap<>();
+
+        for(Lotto lotto:issueLottos){
+            int winningNumbers = confirmWinningNumbers(lotto);
+            boolean bonus = confirmWinningBonus(lotto);
+
+            LottoResult lottoResult = LottoResult.getResult(winningNumbers, bonus);
+            result.compute(lottoResult, (k, prevResult) -> prevResult + 1);
+        }
+        return result;
     }
 }

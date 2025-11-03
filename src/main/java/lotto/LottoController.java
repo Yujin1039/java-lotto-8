@@ -11,10 +11,6 @@ public class LottoController {
         System.out.println("구입금액을 입력해 주세요.");
         int purchasePrice = Validator.checkDivisibility(Console.readLine(), 1000);
 
-        // 출력1: 발행 로또 수량
-        int purchaseAmount = purchasePrice/1000;
-        System.out.printf("%d개를 구매했습니다.\n",purchaseAmount);
-
         // 입력2: 당첨 번호
         System.out.println("당첨 번호를 입력해 주세요.");
         List<Integer> winningNumbers = Validator.convertToList(Console.readLine(),",");
@@ -23,8 +19,12 @@ public class LottoController {
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = Validator.convertToNumber(Console.readLine());
 
+        // 출력1: 발행 로또 수량
+        int purchaseAmount = purchasePrice/1000;
+        System.out.printf("%d개를 구매했습니다.\n",purchaseAmount);
+
         // 로또 발행
-        LottoService lottoService = new LottoService(purchaseAmount, winningNumbers);
+        LottoService lottoService = new LottoService(purchaseAmount, winningNumbers, bonusNumber);
         lottoService.issueLotto();
 
         // 출력2: 발행 로또 번호
