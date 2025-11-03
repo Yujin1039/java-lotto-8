@@ -48,9 +48,7 @@ public class Validator {
         List<Integer> numberList = new ArrayList<>();
         for(String number:tempNums){
             int num = convertToNumber(number);
-            //if(isNumberInRange(num, 1, 45)) {
             numberList.add(num);
-            //}
         }
         return numberList;
     }
