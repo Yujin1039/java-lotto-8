@@ -3,6 +3,8 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import validator.Validator;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.Map;
 
@@ -33,6 +35,7 @@ public class LottoController {
             Lotto issuedLotto = lottoService.getIssueNumbers(i);
             System.out.println(issuedLotto.getLotto());
         }
+        System.out.println();
 
         // 출력3: 당첨 내역
         Map<LottoResult,Integer> result = lottoService.saveLottoResult();
@@ -40,7 +43,21 @@ public class LottoController {
         System.out.println("당첨 통계");
         System.out.println("---");
 
+        int winningPrize = 0;
+        for(Map.Entry<LottoResult,Integer> entry:result.entrySet()){
+            if(entry.getKey().getCorrectNumbers() == 0) continue;
+            System.out.print(entry.getKey().getCorrectNumbers()+"개 일치 ");
+            System.out.printf("(%,d원) - ", entry.getKey().getReward());
+            System.out.println(entry.getValue() +"개");
+            winningPrize += entry.getKey().getReward() * entry.getValue();
+        }
 
         // 출력4: 수익률
+        float roi = (float) winningPrize /purchasePrice*100;
+
+        // 소수점 둘째 자리 반올림
+        BigDecimal bd = new BigDecimal(String.valueOf(roi));
+        BigDecimal final_roi = bd.setScale(2, RoundingMode.HALF_UP);
+        System.out.printf("총 수익률은 %s%%입니다.%n",final_roi.toString());
     }
 }
