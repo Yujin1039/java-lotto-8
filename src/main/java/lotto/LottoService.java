@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoService {
@@ -13,6 +14,7 @@ public class LottoService {
     public LottoService(int pca, List<Integer> list){
         this.purchaseAmount = pca;
         this.winningNumber = new Lotto(list);
+        this.issueNumbers = new ArrayList<>();
     }
 
     // 로또 발행
