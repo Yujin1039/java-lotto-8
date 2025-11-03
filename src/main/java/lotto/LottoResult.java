@@ -28,11 +28,12 @@ public enum LottoResult {
 
     public static LottoResult getResult(int corNums, boolean isBonus){
         for(LottoResult result:values()){
-            if(corNums == 3 || corNums == 4 || corNums == 6){
-                return result;
+            if(result.getCorrectNumbers() != corNums){
+                continue;
             }
-            if(corNums == 5 && isBonus) return result;
-            if(corNums == 5) return result;
+            if(result.getCorrectNumbers() == 5 && result.isBonus == isBonus) return result;
+            //if(result.getCorrectNumbers() == 5 && result.isBonus != isBonus) return result;
+            return result;
         }
         return NONE;
     }

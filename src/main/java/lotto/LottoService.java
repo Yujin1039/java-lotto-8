@@ -11,11 +11,15 @@ public class LottoService {
     private int bonusNumber;
     private Map<LottoResult, Integer> result;
 
-    // 로또 번호 객체 생성
-    public LottoService(int pca, List<Integer> list, int bonusNumber){
+    // 발행 로또 번호 객체 생성
+    public LottoService(int pca){
         this.purchaseAmount = pca;
-        this.winningLotto = new Lotto(list);
         this.issueLottos = new ArrayList<>();
+    }
+
+    // 당첨 로또 번호 저장
+    public void setUpWinningLotto(List<Integer> list, int bonusNumber){
+        this.winningLotto = new Lotto(list);
         this.bonusNumber = bonusNumber;
     }
 
@@ -46,7 +50,7 @@ public class LottoService {
 
     // 보너스 번호 당첨 여부 확인
     public boolean confirmWinningBonus(Lotto lotto){
-        return winningLotto.getLotto().contains(bonusNumber);
+        return lotto.getLotto().contains(bonusNumber);
     }
 
     // 당첨 결과 저장
