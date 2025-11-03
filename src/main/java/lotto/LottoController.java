@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import validator.Validator;
 
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
     public void run(){
@@ -34,6 +35,11 @@ public class LottoController {
         }
 
         // 출력3: 당첨 내역
+        Map<LottoResult,Integer> result = lottoService.saveLottoResult();
+
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
 
         // 출력4: 수익률
     }

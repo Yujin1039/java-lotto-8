@@ -2,10 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class LottoService {
     private int purchaseAmount;
@@ -54,7 +51,12 @@ public class LottoService {
 
     // 당첨 결과 저장
     public Map<LottoResult,Integer> saveLottoResult(){
-        result = new HashMap<>();
+        result = new EnumMap<>(LottoResult.class);
+
+        // Map 초기화
+        for(LottoResult init:LottoResult.values()){
+            result.put(init,0);
+        }
 
         for(Lotto lotto:issueLottos){
             int winningNumbers = confirmWinningNumbers(lotto);
