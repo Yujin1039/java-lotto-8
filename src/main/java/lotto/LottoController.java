@@ -6,7 +6,7 @@ import validator.Validator;
 import java.util.List;
 
 public class LottoController {
-    public static void main(String[] args){
+    public void run(){
         // 입력1: 로또 구입 금액
         System.out.println("구입금액을 입력해 주세요.");
         int purchasePrice = Validator.checkDivisibility(Console.readLine(), 1000);
@@ -23,7 +23,15 @@ public class LottoController {
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = Validator.convertToNumber(Console.readLine());
 
+        // 로또 발행
+        LottoService lottoService = new LottoService(purchaseAmount, winningNumbers);
+        lottoService.issueLotto();
+
         // 출력2: 발행 로또 번호
+        for(int i=0; i<purchaseAmount; i++){
+            Lotto issuedLotto = lottoService.getIssueNumbers(i);
+            System.out.println(issuedLotto.getLotto());
+        }
 
         // 출력3: 당첨 내역
 

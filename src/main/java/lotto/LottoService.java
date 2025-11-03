@@ -22,4 +22,9 @@ public class LottoService {
             issueNumbers.add(issueNumber);
         }
     }
+
+    // 발행된 로또 반환
+    public Lotto getIssueNumbers(int index){
+        return issueNumbers.get(index);
+    }
 }
