@@ -2,6 +2,7 @@ package lotto;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import validator.Validator;
 
 import java.util.List;
 
@@ -23,6 +24,15 @@ class LottoTest {
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("보너스 번호가 로또 번호와 중복되면 예외가 발생한다.")
+    @Test
+    void checkBonusNumber_중복(){
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        assertThatThrownBy(() -> Validator.unRepeatedNumber(winningNumbers, "6"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 보너스 번호는 당첨 번호와 일치할 수 없습니다.");
+    }
     /*
     @Test
     void 당첨_번호_개수(){
