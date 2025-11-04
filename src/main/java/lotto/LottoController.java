@@ -35,7 +35,7 @@ public class LottoController {
 
         // 입력3: 보너스 번호
         System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = Validator.convertToNumber(Console.readLine());
+        int bonusNumber = Validator.unRepeatedNumber(winningNumbers, Console.readLine());
 
         // 당첨 번호 저장
         lottoService.setUpWinningLotto(winningNumbers, bonusNumber);

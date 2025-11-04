@@ -1,7 +1,9 @@
 package validator;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Validator {
 
@@ -57,5 +59,15 @@ public class Validator {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
         return numberList;
+    }
+
+    // 보너스 번호와 로또 번호 중복 여부 확인
+    public static int unRepeatedNumber(List<Integer> winningNumbers, String bonus){
+        int bonusNumber = convertToNumber(bonus);
+
+        if(winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 일치할 수 없습니다.");
+        }
+        return bonusNumber;
     }
 }
