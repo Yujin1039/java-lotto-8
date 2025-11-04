@@ -33,7 +33,7 @@ public enum LottoResult {
             }
             if(result.getCorrectNumbers() == 5 && result.isBonus == isBonus) return result;
             //if(result.getCorrectNumbers() == 5 && result.isBonus != isBonus) return result;
-            return result;
+            if(result.getCorrectNumbers() != 5) return result;
         }
         return NONE;
     }
