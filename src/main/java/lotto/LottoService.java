@@ -27,7 +27,7 @@ public class LottoService {
     public void issueLotto(){
         for(int i=0; i<purchaseAmount; i++){
             Lotto issueNumber = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-            issueNumber.sortNumbers();
+            //issueNumber.sortNumbers();
             issueLottos.add(issueNumber);
         }
     }

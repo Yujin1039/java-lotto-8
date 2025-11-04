@@ -1,5 +1,6 @@
 package lotto;
 
+import Output.Formatter;
 import camp.nextstep.edu.missionutils.Console;
 import validator.Validator;
 
@@ -52,9 +53,7 @@ public class LottoController {
             int count = entry.getValue();
 
             if(key.getCorrectNumbers() == 0) continue;
-            System.out.print(key.getCorrectNumbers()+"개 일치 ");
-            System.out.printf("(%,d원) - ", key.getReward());
-            System.out.println(count +"개");
+            Formatter.printStatics(key.getCorrectNumbers(), key.getBonus(), key.getReward(), count);
             winningPrize += key.getReward() * entry.getValue();
         }
 
